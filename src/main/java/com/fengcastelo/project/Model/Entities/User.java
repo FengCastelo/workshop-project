@@ -1,12 +1,19 @@
 package com.fengcastelo.project.Model.Entities;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
+
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
     private String name;
     private String email;
     private String phone;
@@ -14,8 +21,7 @@ public class User implements Serializable {
 
     public User(){
     }
-
-    public User(String email, Integer id, String name, String password, String phone) {
+    public User(String email, Long id, String name, String password, String phone) {
         this.email = email;
         this.id = id;
         this.name = name;
@@ -31,11 +37,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

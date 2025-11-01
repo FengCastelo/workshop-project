@@ -1,4 +1,4 @@
-package com.fengcastelo.project.resources;
+package com.fengcastelo.project.Model.Controller;
 
 import com.fengcastelo.project.Model.Entities.User;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<User> findAll(){
-        User u = new User("maria@gmail.com", 1, "Maria", "123456", "9999999");
+        User u = new User("maria@gmail.com", 1L, "Maria", "123456", "9999999");
         return ResponseEntity.ok().body(u);
     }
 }
