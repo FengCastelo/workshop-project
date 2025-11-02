@@ -1,6 +1,7 @@
 package com.fengcastelo.project.Model.Entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fengcastelo.project.Model.Entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,6 +19,8 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
+    private Integer orderStatus;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
@@ -25,10 +28,21 @@ public class Order implements Serializable {
     public Order(){
     }
 
-    public Order(User client, Long id, Instant moment) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.client = client;
         this.id = id;
+        setOrderStatus(orderStatus);
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if(orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getClient() {
