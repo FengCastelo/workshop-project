@@ -12,14 +12,14 @@ import java.util.Optional;
 public class OrderService {
 
     @Autowired
-    private OrderRepository OrderRepository;
+    private OrderRepository orderRepository;
 
     public List<Order> findAll() {
-        return OrderRepository.findAll();
+        return orderRepository.findAll();
     }
 
     public Order findById(Long id) {
-         Optional<Order> obj = OrderRepository.findById(id);
+         Optional<Order> obj = orderRepository.findById(id);
          return obj.get();
     }
 }

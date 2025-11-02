@@ -12,14 +12,14 @@ import java.util.Optional;
 public class CategoryService {
 
     @Autowired
-    private CategoryRepository CategoryRepository;
+    private CategoryRepository categoryRepository;
 
     public List<Category> findAll() {
-        return CategoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     public Category findById(Long id) {
-         Optional<Category> obj = CategoryRepository.findById(id);
+         Optional<Category> obj = categoryRepository.findById(id);
          return obj.get();
     }
 }
