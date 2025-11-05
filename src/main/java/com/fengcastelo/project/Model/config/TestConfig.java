@@ -39,10 +39,10 @@ public class TestConfig implements CommandLineRunner {
 
         //generic products find on internet
         Product p1 = new Product(null, "The Lord of the Rings", "The Lord of the Rings is an epic fantasy novel by J.R.R. Tolkien that follows the hobbit Frodo Baggins on a quest to destroy the One Ring to defeat the Dark Lord Sauron.", 90.5, "");
-        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
-        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
-        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
-        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+        Product p2 = new Product(null, "Smart TV", "Experience your favorite shows and movies in stunning clarity with this Smart TV — featuring vibrant 4K resolution, built-in streaming apps, and voice control for effortless entertainment.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "the MacBook combines cutting-edge performance with all-day battery life, perfect for creativity, productivity, and everything in between.", 3250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Designed with powerful graphics, ultra-fast processors, and customizable RGB lighting for an unbeatable gaming experience.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "If you need to build Web and database applications quickly but you don't dream in computer code, take heart! Ruby on Rails was created for you, and this book will have you up and running in no time.", 100.99, "");
 
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
