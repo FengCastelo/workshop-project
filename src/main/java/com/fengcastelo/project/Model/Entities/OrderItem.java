@@ -38,12 +38,12 @@ public class OrderItem implements Serializable {
         id.setOrder(order);
     }
 
-    public Product getProduct(){
-        return id.getProduct();
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setProduct(Product product){
-        id.setProduct(product);
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Double getPrice() {
@@ -54,12 +54,16 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Double getSubTotal(){
+        return getPrice() * getQuantity();
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public Product getProduct(){
+        return id.getProduct();
+    }
+
+    public void setProduct(Product product){
+        id.setProduct(product);
     }
 
     @Override
