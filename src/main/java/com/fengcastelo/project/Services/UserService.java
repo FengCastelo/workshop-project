@@ -2,6 +2,7 @@ package com.fengcastelo.project.Services;
 
 import com.fengcastelo.project.Model.Entities.User;
 import com.fengcastelo.project.Repositories.UserRepository;
+import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
          Optional<User> obj = userRepository.findById(id);
-         return obj.get();
+         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj){
