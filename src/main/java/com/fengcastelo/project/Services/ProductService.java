@@ -1,12 +1,13 @@
 package com.fengcastelo.project.Services;
 
+import com.fengcastelo.project.Model.Entities.Category;
 import com.fengcastelo.project.Model.Entities.Product;
+import com.fengcastelo.project.Repositories.CategoryRepository;
 import com.fengcastelo.project.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -14,12 +15,25 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public List<Product> findAll() {
         return productRepository.findAll();
     }
 
     public Product findById(Long id) {
-         Optional<Product> obj = productRepository.findById(id);
-         return obj.get();
+        Optional<Product> obj = productRepository.findById(id);
+        return obj.get();
+    }
+
+    public Product insert(Product obj) {
+        Set<Category> categorySet = new HashSet<>();
+        for(Category cat : obj.getCategories()) {
+            Category existing = categoryRepository.findById(cat.getId()).orElseThrow(() -> new RuntimeException("Category Not Found: " + cat.getId()));
+            categorySet.add(existing);
+        }
+        obj.setCategories(categorySet);
+        return productRepository.save(obj);
     }
 }
