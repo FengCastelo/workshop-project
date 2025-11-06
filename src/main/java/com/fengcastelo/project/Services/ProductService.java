@@ -4,6 +4,7 @@ import com.fengcastelo.project.Model.Entities.Category;
 import com.fengcastelo.project.Model.Entities.Product;
 import com.fengcastelo.project.Repositories.CategoryRepository;
 import com.fengcastelo.project.Repositories.ProductRepository;
+import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class ProductService {
 
     public Product findById(Long id) {
         Optional<Product> obj = productRepository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Product insert(Product obj) {
@@ -35,5 +36,9 @@ public class ProductService {
         }
         obj.setCategories(categorySet);
         return productRepository.save(obj);
+    }
+
+    public void delete(Long id){
+        productRepository.deleteById(id);
     }
 }
