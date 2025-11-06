@@ -1,5 +1,6 @@
 package com.fengcastelo.project.Model.Controllers.exceptions;
 
+import com.fengcastelo.project.Services.exceptions.DatabaseException;
 import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,14 @@ public class ResourceExceptionHandler {
         String error = "Resource not found";
         //HttpStatus -> retorna um Int no seu value.
         HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError(error, e.getMessage(), request.getRequestURI(), status.value(), Instant.now());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandardError> database(DatabaseException e, HttpServletRequest request){
+        String error = "Database error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(error, e.getMessage(), request.getRequestURI(), status.value(), Instant.now());
         return ResponseEntity.status(status).body(err);
     }

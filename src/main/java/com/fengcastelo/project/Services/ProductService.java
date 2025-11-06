@@ -4,8 +4,11 @@ import com.fengcastelo.project.Model.Entities.Category;
 import com.fengcastelo.project.Model.Entities.Product;
 import com.fengcastelo.project.Repositories.CategoryRepository;
 import com.fengcastelo.project.Repositories.ProductRepository;
+import com.fengcastelo.project.Services.exceptions.DatabaseException;
 import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,7 +33,7 @@ public class ProductService {
 
     public Product insert(Product obj) {
         Set<Category> categorySet = new HashSet<>();
-        for(Category cat : obj.getCategories()) {
+        for (Category cat : obj.getCategories()) {
             Category existing = categoryRepository.findById(cat.getId()).orElseThrow(() -> new RuntimeException("Category Not Found: " + cat.getId()));
             categorySet.add(existing);
         }
@@ -38,7 +41,15 @@ public class ProductService {
         return productRepository.save(obj);
     }
 
-    public void delete(Long id){
-        productRepository.deleteById(id);
+    public void delete(Long id) {
+        try {
+            productRepository.deleteById(id);
+        } catch (
+                EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (
+                DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 }
