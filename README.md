@@ -1,4 +1,4 @@
-# Workshop Java Spring Boot com JPA/Hibernate & PostgreSQL
+# 💻 Workshop Java Spring Boot com JPA/Hibernate & PostgreSQL
 
 Projeto desenvolvido como parte de um **workshop completo de Spring Boot**, com o objetivo de praticar e demonstrar uma aplicação **backend**, contendo entities, relacionamentos e operações típicas de um sistema de pedidos.
 
@@ -12,7 +12,7 @@ Projeto desenvolvido como parte de um **workshop completo de Spring Boot**, com 
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=Maven&logoColor=white)
 
-This project is an API built using **Java, Java Spring, JPA/Hibernate, PostgresSQL as the database, and Spring Security and JWT for authentication control.**
+This project is an API built using **Java, Java Spring, JPA/Hibernate, PostgresSQL as the database.**
 ---
 
 ## Content/Conteúdos
@@ -43,7 +43,7 @@ The application was organized following best practices in layered architecture!
 
 **---**
 
-## 🧪 Perfis de Aplicação / profile application
+## 🧪 Perfis de Aplicação / Profile application
 
 O projeto possui dois perfis configurados no **application.properties**:
 
