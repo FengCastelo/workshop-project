@@ -2,7 +2,6 @@ package com.fengcastelo.project.Services;
 
 import com.fengcastelo.project.Model.Entities.Category;
 import com.fengcastelo.project.Model.Entities.Product;
-import com.fengcastelo.project.Model.Entities.User;
 import com.fengcastelo.project.Repositories.CategoryRepository;
 import com.fengcastelo.project.Repositories.ProductRepository;
 import com.fengcastelo.project.Services.exceptions.DatabaseException;

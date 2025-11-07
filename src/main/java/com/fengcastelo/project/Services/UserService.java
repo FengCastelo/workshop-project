@@ -3,7 +3,9 @@ package com.fengcastelo.project.Services;
 import com.fengcastelo.project.Model.Entities.User;
 import com.fengcastelo.project.Repositories.UserRepository;
 import com.fengcastelo.project.Services.exceptions.DatabaseException;
+import com.fengcastelo.project.Services.exceptions.EntityNotFound;
 import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,9 +44,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        User entity = userRepository.getReferenceById(id);
-        updateData(entity, obj);
-        return userRepository.save(entity);
+        try {
+            User entity = userRepository.getReferenceById(id);
+            updateData(entity, obj);
+            return userRepository.save(entity);
+        }catch (EntityNotFoundException e){
+            throw new EntityNotFound(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
