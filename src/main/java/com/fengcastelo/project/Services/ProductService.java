@@ -5,7 +5,9 @@ import com.fengcastelo.project.Model.Entities.Product;
 import com.fengcastelo.project.Repositories.CategoryRepository;
 import com.fengcastelo.project.Repositories.ProductRepository;
 import com.fengcastelo.project.Services.exceptions.DatabaseException;
+import com.fengcastelo.project.Services.exceptions.EntityNotFound;
 import com.fengcastelo.project.Services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -44,19 +46,21 @@ public class ProductService {
     public void delete(Long id) {
         try {
             productRepository.deleteById(id);
-        } catch (
-                EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
-        } catch (
-                DataIntegrityViolationException e) {
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    public Product update(Long id, Product obj){
-        Product entity = productRepository.getReferenceById(id);
-        updateData(entity, obj);
-        return productRepository.save(entity);
+    public Product update(Long id, Product obj) {
+        try {
+            Product entity = productRepository.getReferenceById(id);
+            updateData(entity, obj);
+            return productRepository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new EntityNotFound(id);
+        }
     }
 
     private void updateData(Product entity, Product obj) {
