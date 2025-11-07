@@ -1,6 +1,7 @@
 package com.fengcastelo.project.Model.Controllers;
 
 import com.fengcastelo.project.Model.Entities.Product;
+import com.fengcastelo.project.Model.Entities.User;
 import com.fengcastelo.project.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,11 @@ public class ProductResource {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
     }
 }
