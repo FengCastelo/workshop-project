@@ -1,7 +1,6 @@
 package com.fengcastelo.project.Model.Controllers;
 
 import com.fengcastelo.project.Model.Entities.Product;
-import com.fengcastelo.project.Model.Entities.User;
 import com.fengcastelo.project.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +18,13 @@ public class ProductResource {
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity<List<Product>> findAll(){
+    public ResponseEntity<List<Product>> findAll() {
         List<Product> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id){
+    public ResponseEntity<Product> findById(@PathVariable Long id) {
         Product obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
@@ -39,13 +38,13 @@ public class ProductResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product obj){
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
