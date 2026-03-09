@@ -17,10 +17,10 @@ This project is an API built using **Java, Java Spring, JPA/Hibernate, PostgresS
 
 ## Content/Conteúdos
 
-- [Objetivo do Projeto](#project-objective)
-- [Perfis de Aplicação](#perfis-aplicacao)
+- [Objetivo do Projeto](#-objetivo-do-projeto--objective)
+- [Perfis de Aplicação](#-perfis-de-aplicação--profile-application)
 - [Database](#database)
-- [Como Executar](#how-to-execute)
+- [Como Executar](#%EF%B8%8F-como-executar)
 - [API Endpoints](#api-endpoints)
 - [Deploy](#deploy)
 
